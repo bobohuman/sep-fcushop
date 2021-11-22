@@ -8,37 +8,30 @@ import org.springframework.stereotype.Service;
 import org.sql2o.Connection;
 
 
-/**
- * this is.
- */
+/** CA. */
 
 @Service
 public class ProductService {
 
   @Autowired
-  private Sql2oDbHandler sql2oDbHandler;
+    private Sql2oDbHandler sql2oDbHandler;
 
   public ProductService() {
 
   }
-
-  /**
-   * this is.
-   */
+  /** CA. */
 
   public List<Product> getProducts() {
     try (Connection connection = sql2oDbHandler.getConnector().open()) {
       String query = "select ID id, NAME name, IMAGE_URL imageUrl, PRICE price, DESCRIPTION description"
-          + " from PRODUCT";
+            + " from PRODUCT";
       return connection.createQuery(query).executeAndFetch(Product.class);
     }
   }
-/***/
   public List<Product> searchProducts(String name) {
     try (Connection connection = sql2oDbHandler.getConnector().open()) {
       String query = "select ID id, NAME name, IMAGE_URL imageUrl, PRICE price, DESCRIPTION description"
-          +
-          " from PRODUCT  WHERE NAME = '" + name + "';";
+      + " from PRODUCT  WHERE NAME = '"+name+"';";
       return connection.createQuery(query).executeAndFetch(Product.class);
     }
   }
